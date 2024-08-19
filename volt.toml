@@ -11,7 +11,7 @@ language = ["typescript", "typescriptreact", "javascript", "javascriptreact"]
 workspace-contains = ["*/package.json", "*/*.ts", "*/*.js", "*/*.tsx", "*/*.jsx"]
 
 [config."volt.serverPath"]
-default = ""
+default = "typescript-language-server"
 description = "Path to typescript-language-server"
 
 [config."volt.serverArgs"]

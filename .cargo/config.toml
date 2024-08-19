@@ -2,4 +2,4 @@
 root = "."
 
 [build]
-target = "wasm32-wasi"
+target = "wasm32-wasip1"

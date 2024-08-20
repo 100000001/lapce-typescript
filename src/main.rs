@@ -1,9 +1,9 @@
+use std::str::FromStr;
 use anyhow::{anyhow, Result};
 use lapce_plugin::{
   psp_types::{
     lsp_types::{
-      request::Initialize, DocumentFilter, DocumentSelector, InitializeParams, InitializeResult,
-      Url,
+      request::Initialize, DocumentFilter, DocumentSelector, InitializeParams, InitializeResult, Uri
     },
     Request,
   },
@@ -31,7 +31,7 @@ macro_rules! ok {
   };
 }
 
-type LspParams = (Url, Vec<String>, DocumentSelector, Option<Value>);
+type LspParams = (Uri, Vec<String>, DocumentSelector, Option<Value>);
 
 fn initialize(params: InitializeParams) -> Result<LspParams> {
   let document_selector: DocumentSelector = vec![
@@ -76,7 +76,7 @@ fn initialize(params: InitializeParams) -> Result<LspParams> {
       if let Some(server_path) = volt.get("serverPath") {
         if let Some(server_path) = server_path.as_str() {
           if !server_path.is_empty() {
-            let server_uri = ok!(Url::parse(&format!("urn:{server_path}")));
+            let server_uri = ok!((Uri::from_str(&format!("urn:{server_path}"))));
             return Ok((
               server_uri,
               server_args,
@@ -90,8 +90,8 @@ fn initialize(params: InitializeParams) -> Result<LspParams> {
   }
 
   let server_uri = match VoltEnvironment::operating_system().as_deref() {
-    | Ok("windows") => ok!(Url::parse("urn:typescript-language-server.cmd")),
-    | _ => ok!(Url::parse("urn:typescript-language-server")),
+    | Ok("windows") => ok!(Uri::from_str("urn:typescript-language-server.cmd")),
+    | _ => ok!(Uri::from_str("urn:typescript-language-server")),
   };
 
   Ok((

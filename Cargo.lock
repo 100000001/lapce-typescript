@@ -66,6 +66,7 @@ dependencies = [
 [[package]]
 name = "lapce-plugin"
 version = "0.1.1"
+source = "git+https://github.com/lapce/lapce-plugin-rust.git#a529f3ab570889890db178622b6104ed17b2168d"
 dependencies = [
  "anyhow",
  "bytes",
@@ -151,7 +152,8 @@ dependencies = [
 [[package]]
 name = "psp-types"
 version = "0.1.1"
-source = "git+https://github.com/100000001/psp-types#cd9b48e6dab62ac2be80dcf3ca10a8b88a95cd08"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d02f4927e711603ca3e881d4eb194bfd2b2b28ae2ac70fbd52ea34a58b659def"
 dependencies = [
  "lsp-types",
  "serde",
